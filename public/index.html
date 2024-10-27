@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSA Web App</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        input, button { width: 100%; padding: 10px; margin: 5px 0; }
+        .output { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RSA Web App</h1>
+        <h2>Classic RSA</h2>
+        <input type="text" id="p" placeholder="Enter prime number p" />
+        <input type="text" id="q" placeholder="Enter prime number q" />
+        <input type="text" id="plaintext" placeholder="Enter plaintext (m < n)" />
+        <button id="classicRsaBtn">Encrypt/Decrypt Classic RSA</button>
+        <div class="output" id="classicOutput"></div>
+
+        <h2>2048-bit RSA</h2>
+        <input type="text" id="message" placeholder="Enter message" />
+        <button id="rsa2048Btn">Encrypt/Decrypt 2048-bit RSA</button>
+        <div class="output" id="rsa2048Output"></div>
+    </div>
+
+    <script>
+        document.getElementById("classicRsaBtn").onclick = function() {
+            const p = document.getElementById("p").value;
+            const q = document.getElementById("q").value;
+            const plaintext = document.getElementById("plaintext").value;
+
+            fetch('/classic-rsa', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ p, q, plaintext })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("classicOutput").innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
+        };
+
+        document.getElementById("rsa2048Btn").onclick = function() {
+            const message = document.getElementById("message").value;
+
+            fetch('/rsa-2048', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("rsa2048Output").innerHTML = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.error('Error:', error));
+        };
+    </script>
+</body>
+</html>
