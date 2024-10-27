@@ -5,10 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RSA Web App</title>
     <style>
-        body { font-family: Arial, sans-serif; }
-        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
-        input, button { width: 100%; padding: 10px; margin: 5px 0; }
-        .output { margin-top: 20px; }
+        /* General Styles */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; color: #333; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { max-width: 600px; background-color: #ffffff; padding: 30px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border-radius: 8px; }
+
+        /* Typography */
+        h1 { font-size: 2em; color: #4a90e2; margin-bottom: 20px; text-align: center; }
+        h2 { font-size: 1.5em; color: #4a90e2; margin: 20px 0 10px; }
+
+        /* Form Inputs */
+        input, button { 
+            width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 4px; 
+            font-size: 1em; transition: border-color 0.3s;
+        }
+        input:focus { border-color: #4a90e2; outline: none; }
+
+        /* Buttons */
+        button {
+            background-color: #4a90e2; color: #fff; font-weight: bold; border: none; cursor: pointer;
+        }
+        button:hover { background-color: #357abd; }
+
+        /* Output */
+        .output { margin-top: 20px; padding: 10px; border-radius: 4px; background-color: #f9f9f9; font-family: monospace; white-space: pre-wrap; word-wrap: break-word; border: 1px solid #e1e1e1; }
     </style>
 </head>
 <body>
